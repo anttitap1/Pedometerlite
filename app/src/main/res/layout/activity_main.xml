@@ -4,67 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/finaltausta"
+    android:background="@drawable/finaltaustavanha"
     tools:context=".MainActivity">
 
     <ImageButton
         android:id="@+id/imageButtonCalendar"
         style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="#00FFFFFF"
         android:onClick="calendarButtonPressed"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSteps"
-        app:layout_constraintVertical_bias="0.916"
+        app:layout_constraintVertical_bias="0.842"
         app:srcCompat="@drawable/calendarbuttoneffect" />
 
     <ImageButton
         android:id="@+id/imageButtonOn"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:background="#00FFFFFF"
         android:onClick="onoffButtonPressed"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSteps"
-        app:layout_constraintVertical_bias="0.126"
+        app:layout_constraintVertical_bias="0.313"
         app:srcCompat="@drawable/finalbuttonoff" />
 
     <ImageButton
         android:id="@+id/imageButtonOff"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:background="#00FFFFFF"
         android:onClick="onoffButtonPressed"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSteps"
-        app:layout_constraintVertical_bias="0.122"
+        app:layout_constraintVertical_bias="0.313"
         app:srcCompat="@drawable/finalbuttonon" />
 
     <ImageButton
         android:id="@+id/imageButtonReset"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="#00FFFFFF"
         android:onClick="resetButtonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintHorizontal_bias="0.861"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSteps"
-        app:layout_constraintVertical_bias="0.916"
+        app:layout_constraintVertical_bias="0.842"
         app:srcCompat="@drawable/resetbuttoneffect" />
 
     <TextView
@@ -79,7 +77,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.369" />
 
     <TextView
         android:id="@+id/textViewDate"
