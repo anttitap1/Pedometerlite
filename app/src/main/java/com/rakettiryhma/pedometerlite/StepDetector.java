@@ -1,12 +1,10 @@
 package com.rakettiryhma.pedometerlite;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,7 +12,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +22,9 @@ import java.util.Calendar;
 
 import static com.rakettiryhma.pedometerlite.App.CHANNEL_ID;
 
+/**
+ * Service-luokan perivä ja SensorEventListener-rajapinnan toteuttava luokka, jolla tunnistetaan askel.
+ */
 public class StepDetector extends Service implements SensorEventListener {
 
     public static boolean active = false;
@@ -36,6 +36,18 @@ public class StepDetector extends Service implements SensorEventListener {
 
     private boolean hasStepDetector;
 
+    /**
+     * Testaa onko laitteessa Step Detector-sensoria ja rekisteröi sen jos sensori löytyy, jos sensoria ei löydy niin
+     * testaa onko laitteessa Accelerometer-sensoria ja rekisteröi sen. Jos kumpaakaan sensoria ei löydy niin sammuttaa itsensä.
+     *
+     * Sensorin rekisteröinnin jälkeen luodaan notification ja käynnistetään foreground service, joka jatkaa askelten laskua niin kauan
+     * kunnes se sammutetaan. Foreground service ei sammu vaikka sen käynnistämä sovellus sammutettaisiin.
+     *
+     * @param intent Intent
+     * @param flags int
+     * @param startId int
+     * @return int
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -74,6 +86,9 @@ public class StepDetector extends Service implements SensorEventListener {
         //return START_STICKY;
     }
 
+    /**
+     * Vapauttaa sensorin ja asettaa muuttujan active arvoksi false.
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -117,9 +132,18 @@ public class StepDetector extends Service implements SensorEventListener {
     }
     */
 
+    /**
+     * Metodi jota kutsutaan käytössä olevan sensorin tunnistaessa uuden tapahtuman.
+     * Reagoi onStartCommandissa rekisteröidyn sensorin tapahtumiin.
+     * Jos tapahtuma on Step Detecotr-sensorin niin lisää yhden askeleen.
+     * Jos tapahtuma on Accelerometer-sensorin niin lasketaan tapahtuman arvoista onko käyttäjä ottanut askeleen.
+     *
+     * Lähettää askeleet MainActivitylle jos MainActivityn active muuttujan arvo on true.
+     *
+     * @param event sensorin tunnistama tapahtuma
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
-
 
         if (event != null) {
             // Jos Step Detector sensori on käytössä, muuten käytetään Accelerometer sensoria
@@ -159,7 +183,11 @@ public class StepDetector extends Service implements SensorEventListener {
 
     }
 
-    // metodi jolla askelet lähetetään MainActivitylle
+    /**
+     * Metodi jolla voidaan lähettää dataa Activityyn, tässä tapauksessa laskettujen askelten lukumäärä MainActivitylle.
+     *
+     * @param stepCount askelten lukumäärä
+     */
     private void sendStepsToActivity(int stepCount) {
         Intent intent = new Intent("STEP_UPDATE");
 

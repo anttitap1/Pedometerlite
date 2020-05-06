@@ -21,6 +21,9 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+/**
+ * Sovelluksen MainActivity.
+ */
 public class MainActivity extends AppCompatActivity {
     public static boolean active = false;
 
@@ -32,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewDate;  // Päivämäärä tekstinäkymä
     private Calendar calendar;      // Kalenteri päivämäärää ja kelloa varten
 
+    /**
+     * Testataan onko laitteessa Step Detector- tai Accelerometer-sensori. Jos kumpaakaan sensoria ei löydy
+     * niin käyttäjälle näytetään Dialogi jossa ilmoitetaan, että sensoreita ei löytynyt ja sovellus sammutetaan.
+     * Jos laitteessa on ainakin toinen sensoreista niin UI-näkymille asetetaan arvot ja rekisteröidään BroadcastReceviver(StepsReceiver)
+     * jolla vastaanotetaan dataa askeltenlaskija-servicestä.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,17 +74,23 @@ public class MainActivity extends AppCompatActivity {
         textViewDate = findViewById(R.id.textViewDate);
 
         receiver = new StepsReceiver(textViewSteps);
-        registerReceiver(receiver, new IntentFilter("STEP_UPDATE"));
+        registerReceiver(receiver, new IntentFilter("STEP_UPDATE")); // Rekisteröidään BroadcastReceiver joka vastaanottaa askel-määrää
 
         updateUI();
     }
 
+    /**
+     * Asettaa muuttujan active arvoksi true.
+     */
     @Override
     protected void onStart() {
         super.onStart();
         active = true;
     }
 
+    /**
+     * Asettaa muuttujan active arvoksi false.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -81,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         //unregisterReceiver(receiver); // tässä alunperin, siirretty onDestroyhyn
     }
 
+    /**
+     * Vapauttaa BroadcastReceiverin(StepsReceiver).
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -88,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
         //sensorManager.unregisterListener(stepDetector); // tämä tapahtuu jo StepDetectorin onDestroyssa
     }
 
+    /**
+     * On- ja Off-napin onClick-metodi, jolla joko käynnistetään tai pysäytetään askeltenlasku-service ja
+     * päivittää nappien näkyvyydet.
+     *
+     * @param view On- tai Off-napin näkymä
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onoffButtonPressed(View view) {
         if (view == onButton) {
@@ -107,6 +133,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Reset-napin onClick-metodi, näyttää dialogin joka kysyy halutaanko askelet resetoida,
+     * jos valitsee "YES" askelet resetoidaan ja UI päivitetään, muulloin toiminto peruutetaan.
+     *
+     * @param view reset-napin näkymä
+     */
     public void resetButtonPressed(View view) {
 
         // Varmistetaan käyttäjältä askelten resetointi
@@ -133,11 +165,19 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
+    /**
+     * Kalenterinapin onClick-metodi, joka käynnistää Kalenteri-activityn.
+     *
+     * @param view kalenterinapin näkymä
+     */
     public void calendarButtonPressed(View view) {
         Intent historyListActivity = new Intent(this, HistoryListActivity.class);
         startActivity(historyListActivity);
     }
 
+    /**
+     * Päivittää UI:n päivämäärä ja askelmäärä tekstielementit, sekä On- ja Off-napin näkyvyyden
+     */
     private void updateUI() {
         if (StepDetector.active) {
             onButton.setVisibility(View.GONE);
@@ -153,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
         textViewSteps.setText(Integer.toString(StepsSaver.getSteps(getSharedPreferences(StepsSaver.STEPS_PREFERENCES, Activity.MODE_PRIVATE))));
     }
 
+    /**
+     * Palauttaa arvon true jos laitteessa on joko Accelerometer- tai Step Detector-sensori, muulloin palauttaa arvon false.
+     *
+     * @return true jos Accelerometer- tai Step Detector-sensori on käytettävissä, muulloin false.
+     */
     private boolean sensorCheck() {
         SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 

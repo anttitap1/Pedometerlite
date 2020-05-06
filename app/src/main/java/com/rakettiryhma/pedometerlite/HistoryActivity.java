@@ -5,8 +5,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Activity joka käynnistetään kun HistoryListActivityssä on tehty valinta.
+ */
 public class HistoryActivity extends AppCompatActivity {
 
+    /**
+     *Vaihtaa kahden tekstinäkymän tekstit Intentin extroissa saatujen tietojen mukaisiksi.
+     *
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

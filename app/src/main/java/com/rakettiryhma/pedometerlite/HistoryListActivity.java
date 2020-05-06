@@ -13,11 +13,20 @@ import android.widget.ListView;
 
 import java.util.List;
 
+/**
+ * Activity joka käynnistetään kun MainActivityssä on klikattu historia-painiketta.
+ * Näytölle luodaan lista kaikista muistiin tallennetuista askelia_per_päivämäärä(StepsByDate)-olioista.
+ */
 public class HistoryListActivity extends AppCompatActivity {
 
     public static final String HISTORY_LIST_MESSAGE_DATE = "com.rakettiryhma.pedometerlite.DATE";
     public static final String HISTORY_LIST_MESSAGE_STEPS = "com.rakettiryhma.pedometerlite.STEPS";
 
+    /**
+     * Luo näytölle listanäkymän askelia_per_päivämäärä(StepsByDate)-olioista.
+     *
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

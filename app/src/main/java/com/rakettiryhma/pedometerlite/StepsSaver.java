@@ -8,19 +8,41 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Luokka jolla askelia tallennetaan laitteen muistiin ja hallitaan.
+ * Avain määritelty public static final String muuttujana, jota kutsuvan luokan tulee käyttää luodessaan SharedPreferences oliota.
+ */
 public class StepsSaver {
 
     public static final String STEPS_PREFERENCES = "PedometerLitePreferences";
     public static final String STEPS_KEY = "StepsKey"; //  avain kokonaisaskelille
 
+    /**
+     * Haetaan kaikkien tallennettujen askelten määrä.
+     *
+     * @param sharedPreferences SharedPreferences
+     * @return int askelet
+     */
     public static int getSteps(SharedPreferences sharedPreferences) {
         return sharedPreferences.getInt(STEPS_KEY, 0);
     }
 
+    /**
+     * Palauttaa tietylle päivämäärälle tallennettujen askelten määrän.
+     *
+     * @param sharedPreferences SharedPreferences
+     * @param date String, päivämäärä jonka askelet halutaan palauttaa
+     * @return int askelet
+     */
     public static int getStepsByDate(SharedPreferences sharedPreferences, String date) {
         return sharedPreferences.getInt(date, 0);
     }
 
+    /**
+     * Poistaa kaikkien tallennettujen askelien arvot ja asettaa kokonaisaskielien arvoksi 0.
+     *
+     * @param sharedPreferences SharedPreferences
+     */
     public static void resetSteps(SharedPreferences sharedPreferences) {
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
 
@@ -39,7 +61,11 @@ public class StepsSaver {
     }
     */
 
-    // Kasvatetaan kokonaisaskelia sekä päivän askelia yhdellä
+    /**
+     * Kasvattaa kokonaisaskelia sekä päivän askelia yhdellä.
+     *
+     * @param sharedPreferences SharedPreferences
+     */
     public static void incrementSteps(SharedPreferences sharedPreferences) {
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
 
@@ -54,6 +80,12 @@ public class StepsSaver {
         sharedPreferencesEditor.commit();
     }
 
+    /**
+     * Palauttaa askelia_per_päivämäärä-olio(StepsByDate) listan.
+     *
+     * @param sharedPreferences SharedPreferences
+     * @return List, lista tallennetusita päivämääristä askelineen
+     */
     public static List<StepsByDate> getAllSteps(SharedPreferences sharedPreferences) {
         List<StepsByDate> list = new ArrayList<>();
 
