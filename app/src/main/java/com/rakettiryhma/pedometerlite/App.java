@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.os.Build;
 
 /**
+ * @author Antti Taponen
+ *
  * Application-luokan perivä luokka, jota käytetään notificationin luomiseen.
  */
 public class App extends Application {

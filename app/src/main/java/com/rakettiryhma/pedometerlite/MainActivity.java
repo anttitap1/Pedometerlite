@@ -22,6 +22,8 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 /**
+ * @author Antti Taponen
+ *
  * Sovelluksen MainActivity.
  */
 public class MainActivity extends AppCompatActivity {

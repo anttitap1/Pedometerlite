@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <author>Antti Taponen</author>
+
     <item android:drawable="@drawable/finalresetoff" android:state_pressed="true"></item>
     <item android:drawable="@drawable/finalreseton"></item>
 </selector>

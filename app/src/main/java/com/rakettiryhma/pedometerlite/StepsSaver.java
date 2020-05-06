@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * @author Niko Lindborg
+ *
  * Luokka jolla askelia tallennetaan laitteen muistiin ja hallitaan.
  * Avain määritelty public static final String muuttujana, jota kutsuvan luokan tulee käyttää luodessaan SharedPreferences oliota.
  */

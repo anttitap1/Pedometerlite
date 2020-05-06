@@ -14,6 +14,8 @@ import android.widget.ListView;
 import java.util.List;
 
 /**
+ * @author Niko Lindborg
+ *
  * Activity joka käynnistetään kun MainActivityssä on klikattu historia-painiketta.
  * Näytölle luodaan lista kaikista muistiin tallennetuista askelia_per_päivämäärä(StepsByDate)-olioista.
  */

@@ -1,5 +1,7 @@
 <resources>
 
+    <!-- Author: Niko Lindborg -->
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

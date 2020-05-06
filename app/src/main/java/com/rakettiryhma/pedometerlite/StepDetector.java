@@ -23,6 +23,8 @@ import java.util.Calendar;
 import static com.rakettiryhma.pedometerlite.App.CHANNEL_ID;
 
 /**
+ * @author Antti Taponen
+ *
  * Service-luokan perivä ja SensorEventListener-rajapinnan toteuttava luokka, jolla tunnistetaan askel.
  */
 public class StepDetector extends Service implements SensorEventListener {

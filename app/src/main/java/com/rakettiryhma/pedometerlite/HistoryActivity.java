@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
+ * @author Jonnie Anker
+ *
  * Activity joka käynnistetään kun HistoryListActivityssä on tehty valinta.
  */
 public class HistoryActivity extends AppCompatActivity {

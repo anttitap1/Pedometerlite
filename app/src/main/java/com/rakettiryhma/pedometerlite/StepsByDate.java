@@ -3,6 +3,8 @@ package com.rakettiryhma.pedometerlite;
 import androidx.annotation.NonNull;
 
 /**
+ * @author Jonnie Anker
+ *
  * Luokka josta luodaan olioita, joihin tallennetaan askelet per päivämäärä.
  */
 public class StepsByDate {

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.widget.TextView;
 
 /**
+ * @author Antti Taponen
+ *
  * Luokka jolla otetaan vastaan StepDetector-luokan lähettämää dataa askelista.
  */
 public class StepsReceiver extends BroadcastReceiver {

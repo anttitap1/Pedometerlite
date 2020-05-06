@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Niko Lindborg -->
+
 <resources>
     <color name="colorPrimary">#57585C</color>
     <color name="colorPrimaryDark">#545357</color>
